@@ -1,0 +1,18 @@
+FROM riobueno/php:7.4-apache
+ENV WORDPRESS_VERSION 5.5 
+ENV WORDPRESS_SHA1 03fe1a139b3cd987cc588ba95fab2460cba2a89e
+
+RUN set -ex; \
+	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
+	echo "$WORDPRESS_SHA1 *wordpress.tar.gz" | sha1sum -c -; \
+    tar -xzf wordpress.tar.gz -C /usr/src/; \
+    rm wordpress.tar.gz; 
+
+RUN mv /usr/src/wordpress/* /var/www/html/; \
+    rm -rf /var/www/html/wp-content/themes/tw*; \
+	chown -R www-data:www-data /var/www/html/
+    
+# COPY docker-entrypoint.sh /usr/local/bin/
+
+# ENTRYPOINT ["docker-entrypoint.sh"]
+# CMD ["apache2-foreground"]
