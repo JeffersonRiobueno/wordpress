@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Log into registry
         # run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-        run: echo " a - ${{ secrets.RB_USER }}" |  docker login -u ${{ secrets.RB_USER }} -p ${{ secrets.RB_PASS }}
+        run: docker login --username ${{ secrets.RB_USER }} --password ${{ secrets.RB_PASS }}
       
       - name: Build image
         run: docker build -t riobueno/wordpress:latest 5/. 
