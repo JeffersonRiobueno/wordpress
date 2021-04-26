@@ -46,13 +46,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+      - name: Log into registry
+        # run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.WORDPRESS.RB_USER }}" |  docker login -u ${{ secrets.RB_USER }} -p ${{ secrets.RB_PASS }}
+      
       - name: Build image
         run: docker build -t riobueno/wordpress:latest 5/. 
 
-      - name: Log into registry
-        # run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-        run: echo "${{ secrets.RB_USER }}" |  docker login -u ${{ secrets.RB_USER }} -p ${{ secrets.RB_PASS }}
+      
            
       - name: Push image
         run: |
