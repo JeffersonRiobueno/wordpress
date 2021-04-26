@@ -27,16 +27,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Log into registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-        #run: docker login --username ${{ secrets.RB_USER }} --password ${{ secrets.RB_PASS }}
       
       - name: Build image
         run: docker build -t riobueno/wordpress:latest 5/. 
-           
+        
+      - name: Log into registry
+#        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login --username ${{ secrets.RB_USER }} --password ${{ secrets.RB_PASS }}
+        
       - name: Push image
         run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/image
+          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
 
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
