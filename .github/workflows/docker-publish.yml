@@ -33,7 +33,7 @@ jobs:
         
       - name: Log into registry
 #        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login --username ${{ secrets.RB_USER }} --password ${{ secrets.RB_PASS }}
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login -u ${{ secrets.RB_USER }} -p ${{ secrets.RB_PASS }}
         
       - name: Push image
         run: |
