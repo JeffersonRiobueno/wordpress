@@ -1,11 +1,9 @@
 FROM riobueno/php-apache:7.4
 
-ENV WORDPRESS_VERSION 5.7.1
-#ENV WORDPRESS_SHA1 8d19761595182c25d107813b55b911a22e7c809b
+ENV WORDPRESS_VERSION 5.7.2
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
-#	echo "$WORDPRESS_SHA1 *wordpress.tar.gz" | sha1sum -c -; \
     tar -xzf wordpress.tar.gz -C /usr/src/; \
     rm wordpress.tar.gz; 
 
@@ -16,7 +14,4 @@ COPY extra/* /var/www/html/
 
 RUN	chown -R www-data:www-data /var/www/html/
 
-    
-
-# ENTRYPOINT ["docker-entrypoint.sh"]
 # CMD ["apache2-foreground"]
