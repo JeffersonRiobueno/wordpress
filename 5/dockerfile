@@ -1,6 +1,6 @@
 FROM riobueno/php-apache:7.4
 
-ENV WORDPRESS_VERSION 5.8
+ENV WORDPRESS_VERSION 5.8.1
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
