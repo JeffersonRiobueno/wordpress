@@ -1,5 +1,5 @@
-FROM riobueno/php:7.4-apache
-ENV WORDPRESS_VERSION 5.5 
+FROM riobueno/php-apache:7.4
+ENV WORDPRESS_VERSION 6.2.2 
 ENV WORDPRESS_SHA1 03fe1a139b3cd987cc588ba95fab2460cba2a89e
 
 RUN set -ex; \
