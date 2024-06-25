@@ -1,4 +1,4 @@
-FROM riobueno/php-apache:7.4
+FROM riobueno/php-apache:7.4-soap
 
 ENV WORDPRESS_VERSION 6.5.5
 
