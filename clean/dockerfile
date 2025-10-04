@@ -13,4 +13,3 @@ RUN mv /usr/src/wordpress/* /var/www/html/; \
 COPY extra/* /var/www/html/
 
 RUN	chown -R www-data:www-data /var/www/html/
-
