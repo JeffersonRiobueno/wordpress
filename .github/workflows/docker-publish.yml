@@ -16,8 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4          
       - name: Build image
+        working-directory: clean
         run: |
-          working-directory: clean
           export $(grep -v '^#' .env | xargs)
           echo "WORDPRESS_VERSION=$WORDPRESS_VERSION"
           docker build clean/ . --build-arg WORDPRESS_VERSION=${WORDPRESS_VERSION} --tag $IMAGE_NAME
