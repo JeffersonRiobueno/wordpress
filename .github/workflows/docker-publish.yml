@@ -23,9 +23,9 @@ jobs:
           echo "WORDPRESS_VERSION=$WORDPRESS_VERSION" >> $GITHUB_ENV
           
       - name: Build image
-        run: docker build clean/. \
-          --build-arg WORDPRESS_VERSION=${WORDPRESS_VERSION} \ 
-          --tag $IMAGE_NAME
+        run: \
+          echo "WORDPRESS_VERSION=$WORDPRESS_VERSION" \
+          docker build clean/ . --build-arg WORDPRESS_VERSION=${WORDPRESS_VERSION} --tag $IMAGE_NAME
         
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
